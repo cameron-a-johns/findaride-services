@@ -8,8 +8,8 @@
     "url": "https://github.com/cameron-a-johns/findaride-services.git"
   },
   "scripts": {
-    "start": "nodemon -w ./src ./server.js",
-    "starthelp": "nodemon -h",
+    "start": "nodemon ./server.js",
+    "starttsc": "tsc && nodemon -w ./src ./dist/server.js",
     "build": "tsc"
   },
   "dependencies": {

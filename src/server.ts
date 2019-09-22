@@ -1,22 +1,5 @@
-﻿require('rootpath')();
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const errorHandler = require('_helpers/error-handler');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
-
-// api routes
-app.use('/users', require('./users/users.controller'));
-
-// global error handler
-app.use(errorHandler);
-
+﻿import { FindARideServer } from './app/app';
 // start server
-const port = process.env.PORT || 4000;
-app.listen(port, function () {
-    console.log('Server listening on port ' + port);
-});
+const port = parseInt(process.env.PORT || '', 10) || 4000;
+const server = new FindARideServer();
+server.start(port);

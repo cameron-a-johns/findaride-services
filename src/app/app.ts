@@ -9,7 +9,7 @@ class App {
   public app: express.Application;
 
   constructor() {
-    app = express();
+    this.app = express();
   }
 }
 

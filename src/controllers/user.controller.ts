@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Put } from '@overnightjs/core';
+import { Controller, Get, Post, Put, ClassMiddleware } from '@overnightjs/core';
 import { OK } from 'http-status-codes';
 import { Request, Response } from 'express';
+import { AuthenticationMiddleware } from '../middleware/auth.middleware';
 
 @Controller('api/users')
+@ClassMiddleware(AuthenticationMiddleware)
 export class UserController {
   @Get()
   private getAll(req: Request, res: Response) {

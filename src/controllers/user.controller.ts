@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, ClassMiddleware } from '@overnightjs/core';
+import { Controller, Get, ClassMiddleware } from '@overnightjs/core';
 import { OK } from 'http-status-codes';
 import { Request, Response } from 'express';
 import { AuthenticationMiddleware } from '../middleware/auth.middleware';
@@ -17,9 +17,9 @@ export class UserController {
     return res.status(OK);
   }
 
-  @Post('add-user')
-  private add(req: Request, res: Response) {}
+  // @Post('add-user')
+  // private add(req: Request, res: Response) {}
 
-  @Put('update-user')
-  private update(req: Request, res: Response) {}
+  // @Put('update-user')
+  // private update(req: Request, res: Response) {}
 }

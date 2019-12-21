@@ -8,9 +8,8 @@
     "url": "https://github.com/cameron-a-johns/findaride-services.git"
   },
   "scripts": {
-    "start": "nodemon ./server.js",
-    "starttsc": "tsc && nodemon -w ./src ./dist/server.js",
-    "build": "tsc"
+    "start": "nodemon -w ./src -e ts --exec 'npm run compile'",
+    "compile": "tsc && node ./dist/server.js"
   },
   "dependencies": {
     "@overnightjs/core": "^1.6.9",

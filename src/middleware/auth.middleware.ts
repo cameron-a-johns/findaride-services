@@ -4,7 +4,7 @@ import { UNAUTHORIZED } from 'http-status-codes';
 type AuthProviders = 'facebook' | 'google';
 
 const ValidateToken = async (token: string, provider: AuthProviders) => {
-  let result: Response;
+  let result: Response = new Response(null, { status: UNAUTHORIZED });
 
   switch (provider) {
     case 'facebook':

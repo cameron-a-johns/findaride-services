@@ -7,6 +7,7 @@ import { RideController } from '../controllers/ride.controller';
 export class FindARideServer extends Server {
   constructor() {
     super(process.env.NODE_ENV === 'development'); // setting showLogs to true
+    this.app.use(bodyParser.raw());
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
     // this.app.use(cors());

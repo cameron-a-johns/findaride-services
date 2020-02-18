@@ -1,14 +1,18 @@
-import { Controller, Get, ClassMiddleware } from '@overnightjs/core';
-import { OK } from 'http-status-codes';
+import { Controller, Get, Post } from '@overnightjs/core';
+import { OK, BAD_REQUEST } from 'http-status-codes';
 import { Request, Response } from 'express';
-import { AuthenticationMiddleware } from '../middleware/auth.middleware';
+// import { AuthenticationMiddleware } from '../middleware/auth.middleware';
+import { UserRepository } from '../repository/user.respository';
 
 @Controller('api/users')
-@ClassMiddleware(AuthenticationMiddleware)
+// @ClassMiddleware(AuthenticationMiddleware)
 export class UserController {
+  private UserDB = new UserRepository();
+
   @Get()
-  private getAll(req: Request, res: Response) {
-    return res.status(OK).json('Got everything');
+  private async getAll(req: Request, res: Response) {
+    const result = await this.UserDB.getTime();
+    return res.status(OK).json(result);
   }
 
   @Get(':id')
@@ -17,8 +21,15 @@ export class UserController {
     return res.status(OK);
   }
 
-  // @Post('add-user')
-  // private add(req: Request, res: Response) {}
+  @Post('add-user')
+  private async add(req: Request, res: Response) {
+    if (!req.body.userId) {
+      return res.status(BAD_REQUEST).json({ isErr: true, msg: 'required field "userId" missing' });
+    }
+
+    const result = await this.UserDB.addUser({ id: req.body.userId });
+    return res.status(result.isErr ? BAD_REQUEST : OK).json(result);
+  }
 
   // @Put('update-user')
   // private update(req: Request, res: Response) {}

@@ -7,3 +7,7 @@ export interface User {
   lastLogin: Date;
   created: Date;
 }
+
+export interface UserAdd {
+  id: string;
+}

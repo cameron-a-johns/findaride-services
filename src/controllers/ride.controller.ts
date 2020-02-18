@@ -25,10 +25,4 @@ export class RideController {
     console.log(req.params.id);
     return res.status(OK);
   }
-
-  @Post('add-user')
-  private add(req: Request, res: Response) {}
-
-  @Put('update-user')
-  private update(req: Request, res: Response) {}
 }

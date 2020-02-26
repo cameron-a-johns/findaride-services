@@ -1,11 +1,12 @@
-import { Controller, Get, Post } from '@overnightjs/core';
+import { Controller, Get, Post, ClassMiddleware } from '@overnightjs/core';
 import { OK, BAD_REQUEST } from 'http-status-codes';
 import { Request, Response } from 'express';
 // import { AuthenticationMiddleware } from '../middleware/auth.middleware';
 import { UserRepository } from '../repository/user.respository';
+import { ApiKeyMiddleware } from 'middleware';
 
 @Controller('api/users')
-// @ClassMiddleware(AuthenticationMiddleware)
+@ClassMiddleware(ApiKeyMiddleware)
 export class UserController {
   private UserDB = new UserRepository();
 

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "nodemon -w ./src -e ts --exec npm run compile",
-    "compile": "tsc && node ./dist/server.js"
+    "compile": "tsc && NODE_PATH=./dist node ./dist/server.js"
   },
   "dependencies": {
     "@overnightjs/core": "^1.6.9",

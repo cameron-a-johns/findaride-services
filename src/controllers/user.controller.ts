@@ -3,7 +3,7 @@ import { OK, BAD_REQUEST } from 'http-status-codes';
 import { Request, Response } from 'express';
 // import { AuthenticationMiddleware } from '../middleware/auth.middleware';
 import { UserRepository } from '../repository/user.respository';
-import { ApiKeyMiddleware } from 'middleware';
+import { ApiKeyMiddleware } from '../middleware';
 
 @Controller('api/users')
 @ClassMiddleware(ApiKeyMiddleware)
@@ -28,7 +28,12 @@ export class UserController {
       return res.status(BAD_REQUEST).json({ isErr: true, msg: 'required field "userId" missing' });
     }
 
-    const result = await this.UserDB.addUser({ id: req.body.userId });
+    // const result = await this.UserDB.addUser({ id: req.body.userId });
+    const result = {
+      isErr: false,
+      message: req,
+    };
+
     return res.status(result.isErr ? BAD_REQUEST : OK).json(result);
   }
 

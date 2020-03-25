@@ -22,7 +22,7 @@ export class UserController {
     return res.status(OK);
   }
 
-  @Post('add-user')
+  @Post()
   private async add(req: Request, res: Response) {
     if (!req.body.userId) {
       return res.status(BAD_REQUEST).json({ isErr: true, msg: 'required field "userId" missing' });
@@ -31,7 +31,7 @@ export class UserController {
     // const result = await this.UserDB.addUser({ id: req.body.userId });
     const result = {
       isErr: false,
-      message: req,
+      message: req.body,
     };
 
     return res.status(result.isErr ? BAD_REQUEST : OK).json(result);

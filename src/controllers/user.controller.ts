@@ -18,7 +18,11 @@ export class UserController {
 
   @Get(':id')
   private get(req: Request, res: Response) {
-    console.log(req.params.id);
+    if (req.params.complete) {
+      // TODO: load full user from DB
+    } else {
+      // TODO: just check user exists
+    }
     return res.status(OK);
   }
 

@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { UserAdd, DbResult } from '../models';
+import { UserAdd } from '../models';
 
 const local =
   'postgres://odiqvfcervvrbx:b0c6f75cb6cd281e7c6e341c20b6a669b58e878db1393b3118a923beb248219f@ec2-54-221-238-248.compute-1.amazonaws.com:5432/d9vpt5ouqt4nf5';
@@ -31,7 +31,7 @@ export class UserRepository {
       return { isErr: true, msg: 'User already signed up' };
     }
 
-    await this.Client.query(`INSERT INTO public.users (provider_id, join_date) VALUES ('${user.id}', NOW())`)
+    await this.Client.query(`INSERT INTO users (provider_id, join_date) VALUES ('${user.id}', NOW())`)
       .then(() => {
         return { isErr: false, msg: 'User successfully created' };
       })
